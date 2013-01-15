@@ -1,0 +1,29 @@
+<% provide(:titre,'Liste Auteur') %>
+<div class="center hero-unit">
+	<h1>
+		Liste d'Auteurs de la Bibliotheque Sientifique
+	</h1>
+	<center>
+		<table border="1">
+			<tr>
+				<td> Identifiant </td>
+				<td>  Prenom </td>
+				<td> Nom </td>
+				<td> Créé à </td>
+				<td> Dernière Mise à Jour </td>
+			</tr>
+			<% @auteurs=Auteur.find(:all).sort { |a,b| a.nom.downcase <=> b.nom.downcase } %>
+			<% for auteur in @auteurs %>
+			<tr>
+				<td><%= auteur.id %></td>
+				<td><%= auteur.prenom %></td>
+				<td><%= auteur.nom %></td>
+				<td><%= auteur.created_at %></td>
+				<td><%= auteur.updated_at %></td>
+			</tr>
+			<% end %>
+		</table>
+	</center>
+	<%= link_to "Liste des Publications", listepublication_path, class: "btn btn-large btn-primary" %>
+</div>
+

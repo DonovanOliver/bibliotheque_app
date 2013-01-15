@@ -1,0 +1,12 @@
+<% provide(:titre,"#{@auteur.prenom} #{@auteur.nom}") %>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+		<h1>
+			<%= gravatar_for @auteur %>
+			<%= "#{@auteur.prenom} #{@auteur.nom}" %>
+		</h1>
+	</section>
+  </aside>
+</div>

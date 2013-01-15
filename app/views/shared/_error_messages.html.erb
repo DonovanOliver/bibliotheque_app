@@ -1,0 +1,13 @@
+<% if @auteur.errors.any? %>
+	<div id="error_explanation">
+		<div class="alert alert-error">
+		la forme contient <% pluralize(@auteur.errors.count, "error") %>
+		</div>
+		
+		<ul>
+			<% @auteur.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %> 
+		</ul>
+	</div>
+<% end %>

@@ -1,0 +1,50 @@
+<% provide(:titre,'Publication') %>
+
+<h1>Publication</h1>
+
+<div class="row">
+  <aside class="span6 offset3">
+    <section>
+    	<% @auteurs=[] %>
+
+    	<% for auteur in Auteur.find(:all) %>
+    	<% @auteurs=@auteurs << [ auteur.prenom+" "+auteur.nom , auteur.id ] %>
+    	<% end %>
+
+
+
+	    <%= form_for(@publication) do |f| %>
+	    <%= render 'shared/errorpublication_messages' %>
+
+	      <%= f.label "Auteur" %>
+	      <%= f.select :id_auteur, @auteurs %>
+
+	      <%= f.label :titre %>
+	      <%= f.text_field :titre %>
+
+	      <%= f.label :genre %>
+	      <%= f.select :genre, [["journal","journal"],["conférence","conférence"]] %>
+
+	      <%= f.label :nom_publication %>
+	      <%= f.text_field :nom_publication %>
+
+	      <%= f.label :annee %>
+	      <%= f.text_field :annee %>
+
+	      <%= f.label :mois %>
+	      <%= f.text_field :mois %>
+
+	      <%= f.label :pages %>
+	      <%= f.text_field :pages %>
+
+	      <%= f.label :notes %>
+	      <%= f.text_field :notes %>
+
+	      <%= f.label :resumer %>
+	      <%= f.text_field :resumer %>
+
+	      <%= f.submit "Creer une publication", class: "btn btn-large btn-primary" %>
+	 	<% end %>
+ 	</section>
+  </aside>
+</div>

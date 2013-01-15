@@ -1,0 +1,43 @@
+<% provide(:titre,'Liste Publication') %>
+<div class="center hero-unit">
+	<h1>
+		Liste des Publications de la Bibliotheque Sientifique
+	</h1>
+	<center>
+		<table border="1">
+			<tr>
+				<td> Identifiant </td>
+				<td>  Titre </td>
+				<td> Genre </td>
+				<td> Nom publication </td>
+				<td> Année </td>
+				<td> Mois </td>
+				<td> Pages </td>
+				<td> Notes </td>
+				<td> Résumer </td>
+				<td> Identifiant de l'Auteur </td>
+				<td> Créé à </td>
+				<td> Dernière Mise à Jour </td>
+			</tr>
+			<% @publications=Publication.find(:all).sort { |a,b| a.nom_publication.downcase <=> b.nom_publication.downcase } %>
+			<% for publication in @publications %>
+			<tr>
+				<td><%= publication.id %></td>
+				<td><%= publication.titre %></td>
+				<td><%= publication.genre %></td>
+				<td><%= publication.nom_publication %></td>
+				<td><%= publication.annee %></td>
+				<td><%= publication.mois %></td>
+				<td><%= publication.pages %></td>
+				<td><%= publication.notes %></td>
+				<td><%= publication.resumer %></td>
+				<td><%= publication.id_auteur %></td>
+				<td><%= publication.created_at %></td>
+				<td><%= publication.updated_at %></td>
+			</tr>
+			<% end %>
+		</table>
+	</center>
+	<%= link_to "Liste des Auteurs", listeauteur_path, class: "btn btn-large btn-primary" %></br>
+</div>
+

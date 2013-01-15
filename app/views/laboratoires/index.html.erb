@@ -1,0 +1,23 @@
+<h1>Listing laboratoires</h1>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @laboratoires.each do |laboratoire| %>
+  <tr>
+    <td><%= laboratoire.nom %></td>
+    <td><%= link_to 'Show', laboratoire %></td>
+    <td><%= link_to 'Edit', edit_laboratoire_path(laboratoire) %></td>
+    <td><%= link_to 'Destroy', laboratoire, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Laboratoire', new_laboratoire_path %>

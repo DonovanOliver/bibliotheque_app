@@ -1,0 +1,160 @@
+Mercredi 2 janvier 2013
+
+Création des pages static: accueil et aide.
+
+Création de la méthode titre_complet
+qui écrit "Ruby on rails Tutorial Bibliotheque App | "+nom 
+
+Création des pages header,footer,shim,application.(tête,pied,et compatibiliter de IE 9,application)
+
+Création des routes: 
+root :to => 'static_pages#accueil'
+match '/aide',    to: 'static_pages#aide'
+
+Mise des tests et du controller.
+
+les tests dans static_pages_spec.rb:
+
+La page d'Accueil:
+-doit avoir le bon titre et le bon syntaxe a la balise <h1>
+
+La page d'Aide:
+-doit avoir le bon titre et le bon syntaxe a la balise <h1>
+
+La visite du lien Aide doit avoir le bon titre.
+
+Jeudi 3 janvier 2013
+
+Création du css.
+
+Création de la base de donnée Auteur.
+Migration de la base de donnée Auteur.
+Création de la page new et show.
+
+new:
+demande le nom et le prénom.
+
+show: 
+montre ce que vous avez valider.
+
+Création des routes: 
+resources :auteurs  
+match '/inscription', to: 'auteur#new'
+
+Création des messages d'erreur.
+
+Mise des tests et du controller.
+
+le controller Auteur:
+
+new:
+@auteur=Auteur.new
+
+show:
+@auteur =Auteur.find(params[:id])
+
+create:
+@auteur = Auteur.new(params[:user])
+  	if @auteur.save
+  		flash[:success] = "Bienvenue a Bibliotheque App"
+  		redirect_to inscription_path(@auteur)
+  	else
+  		render 'new'
+  	end
+
+les tests dans static_pages_spec.rb:
+
+La visite du lien Inscription doit avoir le bon titre.
+
+les tests dans auteur_spec.rb:
+
+quand les nom,prenom sont inéxistant ou trop long doivent pas être valider
+
+Vendredi 4 janvier 2013
+
+Mise a jour du css
+
+Création de la base de donnée Publication.
+Migration de la base de donnée Publication.
+Création de la page new et show.
+
+new:
+demande l'auteur, le titre, le genre (type n'est pas accépter par rails), le nom de la publication, l'annee, le mois, les pages, les notes et le résumer.
+
+show: 
+montre ce que vous avez valider.
+
+Création des messages d'erreur.
+
+Création des routes: 
+resources :publications
+match '/creerpublication', to: 'publication#new'
+
+Mise des tests et du controller.
+
+le controller Publication:
+
+new:
+@publication =Publication.new
+
+show:
+@publication =Publication.find(params[:id])
+
+create:
+@publication = Publication.new(params[:user])
+  	if @publication.save
+  		flash[:success] = "Bienvenue a Bibliotheque App"
+  		redirect_to creerpublication_path(@publication)
+  	else
+  		render 'new'
+  	end
+
+les test dans static_pages_spec.rb:
+
+La visite du lien Inscription doit avoir le bon titre.
+
+les tests dans publication_spec.rb:
+
+quand les id_auteur,titre,genre,nom_publication,annee,mois,pages,notes,resumer sont inéxistant ou trop long doivent pas être valider
+
+
+
+__________________
+Reporter, car j'ai eu un autre projet a rendre et des controles a réviser
+_________
+
+
+Samedi 12 janvier 2013
+
+Mise de la page static ListeAuteur
+
+Sus mettre par ordre alphabétique grace a "Auteur.find(:all).sort { |a,b| a.nom.downcase <=> b.nom.downcase }"
+
+creation du lien dans la page d'accueil vers la liste des Auteurs.
+
+Mise a jour des routes:
+match '/listeauteur',   to: 'static_pages#listeAuteur'
+
+test dans static_pages:
+
+-liste Auteur doit avoir le bon titre et le bon syntaxe a la balise <h1>
+
+Conflit entre le commit et le dossier précedent (cause du css et d'autre fichier), donc j'ai détruit le dossier et recommiter.
+
+Dimanche 13 janvier 2013
+
+Mise de la page static ListePublication
+
+Sus mettre par ordre alphabétique grace a "Publication.find(:all).sort { |a,b| a.nom_publication.downcase <=> b.nom_publication.downcase }"
+
+creation du lien dans la page d'accueil vers la liste des Publications.
+
+Mise a jour des routes:
+match '/listepublication',   to: 'static_pages#listePublication'
+
+test dans static_pages:
+
+-liste Publication doit avoir le bon titre et le bon syntaxe a la balise <h1>
+
+
+
